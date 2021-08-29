@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -58,4 +59,16 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    //Test for calculating prices
+    @Test
+    public void calculatePrices_should_return_correct_bill_amount_when_valid_menu_items_are_selected() {
+        List<String> selectedItems = new ArrayList<String>();
+        selectedItems.add("Sweet corn soup");
+        selectedItems.add("Vegetable lasagne");
+        int expectedPrice = 119 + 269;
+        int calculatedPrice = restaurant.calculatePrices(selectedItems);
+        assertEquals(expectedPrice, calculatedPrice);
+    }
 }
